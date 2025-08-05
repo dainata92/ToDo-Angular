@@ -1,0 +1,46 @@
+<div id="full-cover-background-utilisateur" class="flex h-full items-center justify-center bg-gray-100">
+    <div id="centered-block-utilisateur" class="bg-white p-6 rounded-xl shadow-md">
+            <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+                <h2>Sing Up</h2>
+                <div id="nom-container">
+                        <mat-form-field>
+                            <mat-label>Nom</mat-label>
+                            <input matInput formControlName = "nom" type="text" placeholder="Nom"/>
+                        </mat-form-field>
+                </div>
+                <div id="prenom-container">
+                        <mat-form-field>
+                            <mat-label>Prenom</mat-label>
+                            <input matInput formControlName="prenom" type="text" placeholder="Prenom"/>
+                        </mat-form-field>
+                </div>
+            <div>
+                <mat-form-field>
+                <mat-label>Genre</mat-label>
+                <mat-select>
+                    @for (genre of listGenre; track genre.value){
+                        <mat-option [value]="genre.value">{{genre.text}}</mat-option>
+                    }
+                </mat-select>
+                </mat-form-field>
+            </div>
+
+   <div id="email-container">
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <!-- formControlName = 1er parametre de loginForm-->
+                <input matInput formControlName="username" type="email" placeholder="Email"/>
+            </mat-form-field>
+    </div>
+    <div id="password-container">
+            <mat-form-field>
+                <mat-label>Mot de passe</mat-label>
+                <input matInput formControlName="password" type="password" placeholder="Mot de passe">
+            </mat-form-field>
+    </div>
+            <button mat-flat-button color="primary" type="submit" class="w-full" [disabled]="!signUpForm.valid">
+                    Se connecter
+            </button>
+            </form>
+    </div>
+</div>

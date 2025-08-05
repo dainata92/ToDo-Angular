@@ -1,0 +1,4 @@
+:root {
+    --mat-sys-primary: light-dark(var(--color-red-400), var(--color-red-400));
+    --mdc-fab-container-color: light-dark(var(--color-red-400), var(--color-red-400));
+}

@@ -1,0 +1,13 @@
+     <div id="utilisateur-liste">
+        <mat-list>
+            @for (utilisateur of utilisateurs; track utilisateur.firstName){
+                <mat-list-item>
+                    {{utilisateur.id}}
+                    {{utilisateur.firstName}}
+                    {{utilisateur.lastName}}
+                    {{utilisateur.genre}}
+                </mat-list-item>
+            }
+        </mat-list>
+    </div>
+

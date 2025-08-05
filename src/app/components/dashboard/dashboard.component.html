@@ -1,0 +1,49 @@
+
+<div id="liste-block" class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 p-4 gap-4">
+  <!-- For Tailwind to preserve dynamic classes -->
+  <!-- bg-blue-500 bg-red-500 bg-yellow-500 -->
+    <mat-card id="b1" class="text-white p-4 !bg-blue-500 rounded-lg">
+        <div class="flex items-center gap-x-4">
+            <mat-icon id="b1-col1" >event</mat-icon>
+            <div id="b1-col2">
+                <div id="titre">A faire</div>
+                <div id="valeur" class="font-bold text-2xl">3</div>
+            </div>
+        </div>
+    </mat-card>
+    <mat-card class="text-white p-4 !bg-red-500 rounded-lg">
+     
+        <div class="flex items-center gap-x-4 ">
+            <mat-icon id="b1-col1">warning</mat-icon>
+            <div id="b1-col2">
+                <div id="titre">Tâches en retard</div>
+                <div id="valeur" class="font-bold text-2xl">5</div>  
+            </div>
+        </div>
+    </mat-card>
+    <mat-card class="text-white p-4 !bg-yellow-500 rounded-lg">
+        <div class="flex items-center gap-x-4">
+            <mat-icon id="b1-col1">priority_high</mat-icon>
+            <div id="b1-col2">
+                <div id="titre">Urgent</div>
+                <div id="valeur" class="font-bold text-2xl">2</div>  
+            </div>
+        </div>
+    </mat-card>
+</div>  
+
+
+
+<div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 p-4 gap-4">
+  @for (kpi of kpis; track kpi.id) {
+    <mat-card class="text-white p-4 rounded-lg" [ngClass]="kpi.color">
+      <div class="flex items-center gap-x-4">
+        <mat-icon>{{ kpi.icon }}</mat-icon>
+        <div>
+          <div class="text-md">{{ kpi.text }}</div>
+          <div class="font-bold text-3xl">{{ kpi.valeur}}</div>
+        </div>
+      </div>
+    </mat-card>
+  }
+</div>

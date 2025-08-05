@@ -1,0 +1,111 @@
+<!--
+                <div class="flex items-center"> 
+                            <span class="flex-1">{{todo.title}}</span>
+                            <span class="flex-1">{{todo.id}}</span>
+                            <span class="flex-1">{{todo.completed}}</span>
+                            <span class="flex-1">{{todo.priority}}</span>
+                            <span class="flex-1">{{todo.dueDate}}</span>
+                    </div> 
+-->
+
+<!-- formGroup peut etre nul car il est initialisé
+ au moment du subscribe qui est asynchrone
+ 
+ asynchrone : le resultat de l'API ne vient pas tout de suite-->
+@if (formGroup != null) {
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Edit Todo</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form class="mt-5"[formGroup]="formGroup" (ngSubmit)="onSubmit()">
+                <div>
+                    <mat-form-field class="w-60">
+                        <mat-label>Title</mat-label>
+                        <input matInput formControlName="title" type="text">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="w-60">
+                        <mat-label>User</mat-label>
+                        <mat-select formControlName="userId">
+                            @for(user of allUtilisateurs; track user.id){
+                                <mat-option [value]="user.id">{{user.username}}</mat-option>
+                            }
+                        </mat-select>
+                    </mat-form-field >
+                </div>
+                <div>
+                    <mat-form-field class="w-60 h-50">
+                    <mat-label>Membre</mat-label>
+                    <mat-chip-grid #chipGrid aria-label="Membre selection">
+                        @for (membre of selectedMembres; track membre.id) {
+                        <mat-chip-row (removed)="remove(membre)">
+                            {{ membre.prenom }}
+                            <button matChipRemove [attr.aria-label]="'remove ' + membre.prenom">
+                            <mat-icon>cancel</mat-icon>
+                            </button>
+                        </mat-chip-row>
+                        }
+                    </mat-chip-grid>
+
+                    <input
+                        name="currentMembre"
+                        placeholder="New Membre..."
+                        #membreInput
+                        [formControl]="currentMembre"
+                        [matChipInputFor]="chipGrid"
+                        [matAutocomplete]="auto"
+                        (input)="onCurrentMembreChange(membreInput.value)"
+                    />
+
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                        @for (membre of filteredMembres; track membre.id) {
+                        <mat-option [value]="membre.id">{{ membre.prenom }}</mat-option>
+                        }
+                    </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="w-60">
+                        <mat-label>Projet</mat-label>
+                        <mat-select formControlName="projet">
+                            @for(projet of allProjets; track projet.id){
+                                <mat-option [value]="projet.id">{{projet.nomProjet}}</mat-option>
+                            }
+                        </mat-select>
+                    </mat-form-field >
+                </div>
+                <div>
+                    <mat-form-field class="w-60">
+                        <mat-label>Priorité</mat-label>
+                        <mat-select formControlName="priority">
+                            @for(item of listPriority; track item.value){
+                                <mat-option [value]="item.value">{{item.text}}</mat-option>
+                            }
+                        </mat-select>
+                    </mat-form-field >
+                </div>
+                <div >
+                     <mat-form-field appearance="fill" class="w-60">
+                                <mat-label>Date</mat-label>
+                                <input matInput [matDatepicker]="picker" formControlName="dueDate">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="w-60 h-50">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput formControlName="description"></textarea>
+                    </mat-form-field>
+                </div>
+                <mat-checkbox formControlName="completed">Completed</mat-checkbox>
+                <div class=" flex gap-2">
+                    <button mat-raised-button type="submit" (click)="onSubmit()">Save</button>
+                    <button mat-button type="button" (click)="onCancel()">Cancel</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+}
