@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Todo } from '../models/todo.model';
-
+import { environment } from '../../environments/environment';
  //ng g service todo
 
 //le service fait le lien entre le front et le back
@@ -14,7 +14,8 @@ import { Todo } from '../models/todo.model';
 //HttpClient pour communiquer avec le Api/BackEnd
 export class TodoService {
 
-  private apiURL='http://localhost:8080/api/action';
+  //private apiURL='http://localhost:8080/api/action';
+  private apiURL = environment.apiUrl + '/api/action';
 
   constructor(private http: HttpClient) { }
     //Create
