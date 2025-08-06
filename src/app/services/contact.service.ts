@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface Contact {
   id: number;
@@ -12,7 +13,8 @@ export interface Contact {
 })
 export class ContactService {
 
-  private apiUrl = 'http://localhost:8080/api/contact'; // adapte selon ton back
+  private apiUrl = environment.apiUrl + '/api/contact';
+ // adapte selon ton back
 
   constructor(private http: HttpClient) { }
 
