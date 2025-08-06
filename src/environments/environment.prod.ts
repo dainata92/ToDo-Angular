@@ -1,3 +1,3 @@
 export const environment = {
-    apiUrl : 'https://angular-spring-backend.onrender.com'
+    apiUrl : 'https://planit-springboot.onrender.com'
 };
