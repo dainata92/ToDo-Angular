@@ -38,9 +38,15 @@ export class TodoService {
         return this.http.get<Todo>(this.apiURL + '/' + id);
     }
     //Update
-    updateTodo(item : Todo){
-        return this.http.put<Todo>(this.apiURL + '/' + item.id, item );
-    }
+    updateTodo(item: Todo) {
+  const token = sessionStorage.getItem('authToken');
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  });
+  return this.http.put<Todo>(this.apiURL + '/' + item.id, item, { headers });
+}
+
     //Delete
     deleteTodo(id: number) {
   const token = sessionStorage.getItem('authToken');  // récupère le token
