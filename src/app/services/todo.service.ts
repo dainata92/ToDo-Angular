@@ -42,7 +42,12 @@ export class TodoService {
         return this.http.put<Todo>(this.apiURL + '/' + item.id, item );
     }
     //Delete
-    deleteTodo(id : number){
-        return this.http.delete(this.apiURL + '/' + id);
-    }
+    deleteTodo(id: number) {
+  const token = sessionStorage.getItem('authToken');  // récupère le token
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`  // ajoute le token dans l'header
+  });
+  return this.http.delete(this.apiURL + '/' + id, { headers });
+}
 }
