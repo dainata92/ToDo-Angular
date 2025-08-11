@@ -121,17 +121,12 @@ export class TodoDetailComponent implements OnInit {
       prenom: m.prenom
     }));
     console.log('Payload envoyé:', formValue);
-    this.todoService.updateTodo(formValue).subscribe({
-      next: data => {
+    this.todoService.updateTodo(this.formGroup.value).subscribe(data => {
         console.log('Réponse backend:', data);
         this.snackbar.open('Updated!', '', { duration: 1000 });
         this.router.navigate(['/']);
-      },
-      error: err => {
-        console.error('Erreur lors de la mise à jour:', err);
-        this.snackbar.open('Erreur lors de la sauvegarde', '', { duration: 3000 });
       }
-    });
+    );
   }
 }
 
