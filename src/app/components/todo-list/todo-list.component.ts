@@ -57,15 +57,16 @@ export class TodoListComponent implements OnInit{
       }
     }
 
-    onDeleteTodo(id: number | null){
-      if(id == null)
-        return;
-      this.todoService.deleteTodo(id).subscribe(() => {
-        this.fetchTodo();
-        this.snackBar.open('Deleted !','', {duration: 1000});
-      });
-        
-      }
+    onDeleteTodo(id: number | null) {
+    if (id == null)
+      return;
+
+
+    this.todoService.deleteTodo(id).subscribe(() => {
+      this.fetchTodo();
+      this.snackBar.open('Deleted !', '', {duration:1000});
+    });
+  }
     //on verifie si le checkbox est checked ou pas
      onVerifieTodo(event : MatCheckboxChange, todo : Todo){
         console.log(event.checked);

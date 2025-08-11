@@ -18,28 +18,11 @@ export interface DecodedToken {
 export class AuthService {
   private apiUrl = environment.apiUrl + '/auth/login';
 
-  public isLoggedIn = new BehaviorSubject<boolean>(false);
-
   constructor(private http: HttpClient) {}
 
-  login(payload: Login): Observable<any> {
+  login(payload : any): Observable<any> {
     return this.http.post(`${this.apiUrl}`, payload);
   }
 
-
-/*
-  getCurrentUserId(): number | null {
-    const token = sessionStorage.getItem('authToken');
-    if (!token) return null;
-
-    try {
-      const decoded = jwtDecode<DecodedToken>(token);
-      return decoded.userId ?? null;
-    } catch (e) {
-      return null;
-    }
-  }
-*/
-
-
+  isAdmin = false;
 }

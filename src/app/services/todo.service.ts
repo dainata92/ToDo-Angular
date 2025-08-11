@@ -49,11 +49,6 @@ export class TodoService {
 
     //Delete
     deleteTodo(id: number) {
-  const token = sessionStorage.getItem('authToken');  // récupère le token
-  const headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token}`  // ajoute le token dans l'header
-  });
-  return this.http.delete(this.apiURL + '/' + id, { headers });
+        return this.http.delete(this.apiURL + '/' + id);
 }
 }
