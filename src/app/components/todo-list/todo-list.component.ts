@@ -30,6 +30,8 @@ export class TodoListComponent implements OnInit{
   fetchTodo(){
     this.todoService.getTodos().subscribe((data) => {
     this.todos = data;
+    console.log("Tâches rechargées :", this.todos);
+
   })
 }
 
