@@ -16,7 +16,7 @@ export interface Utilisateur {
 })
 export class UtilisateurService {
 
-  private apiUrl = environment.apiUrl + '/api/dashboard';
+  private apiUrl = environment.apiUrl + '/api/sign-up';
 
 
   constructor(private http: HttpClient) { }
@@ -39,7 +39,6 @@ export class UtilisateurService {
   deleteUtilisateur(id : number){
           return this.http.delete(this.apiUrl + '/' + id);
       }
-  private baseUrl = '/api/dashboard/sign-up';
 
   register(user: any) {
   return this.http.post(this.apiUrl, user, {
